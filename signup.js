@@ -17,6 +17,34 @@ let ab = [{
 }
 ]
 app.post('/signup', function (req, res) {
+    const name = req.body.name;
+    const phone = req.body.phone;
+    const email = req.body.email;
+    const password = req.body.password;
+    let output = true
+    let pattern = /@gmail.com/;
+    if (name == "" || phone == "" || email == "" || password == "") {
+        output = false
+        res.send("Empty Field")
+    }
+    else if (phone.substring(0, 2) != "98") {
+        output = false
+        res.send("Invalid Phone Number")
+    }
+    else if (password.length != 8) {
+        output = false
+        res.send("Invalid Password(Password should be at least 8 characters)")
+    }
+    else if (pattern.test(email) == false) {
+        output = false
+        res.send("Invalid Email")
+    }
+    if (output == true) {
+        res.send('SignUp Succesful')
+    }
+}
+);
+app.post('/login', function (req, res) {
     const user_name = req.body.username;
     const password = req.body.password;
     let output;
