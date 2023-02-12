@@ -1,8 +1,12 @@
 const express = require('express');
+require('dotenv').config()
 const app = express();
 const port = 5000;
+
+const mysqlHelper= require("./mysqlHelper")
 app.use(express.json());//conrt objt to sting
 app.use(express.urlencoded({ extended: true }));
+
 let ab = [{
     "username": "ram",
     "password": "123"
@@ -40,6 +44,8 @@ app.post('/signup', function (req, res) {
         res.send("Invalid Email")
     }
     if (output == true) {
+        // var sql = "INSERT INTO `login` (username, password) VALUES (" + name + "," + password + ")";
+        mysqlHelper.query("INSERT INTO login (username, password) VALUES ('ram','123')");
         res.send('SignUp Succesful')
     }
 }
@@ -62,5 +68,6 @@ app.post('/login', function (req, res) {
 });
 
 app.listen(port, () => {
+    mysqlHelper.init();
     console.log(`Example app listening on port ${port}`)
 })
