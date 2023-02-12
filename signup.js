@@ -44,8 +44,9 @@ app.post('/signup', function (req, res) {
         res.send("Invalid Email")
     }
     if (output == true) {
+        console.log("INSERT INTO Signup (name,phone,email,password) VALUES ('"+name+"','"+phone+"','"+email+"','"+password+"')")
         // var sql = "INSERT INTO `login` (username, password) VALUES (" + name + "," + password + ")";
-        mysqlHelper.query("INSERT INTO login (username, password) VALUES ('ram','123')");
+        mysqlHelper.query("INSERT INTO Signup (name,phone,email,password) VALUES ('"+name+"','"+phone+"','"+email+"','"+password+"')");
         res.send('SignUp Succesful')
     }
 }

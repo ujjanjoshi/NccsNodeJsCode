@@ -11,8 +11,6 @@ const mysql = require('mysql2/promise');
                     port:process.env.MYSQL_DB_PORT,
                     database:process.env.MYSQL_DB_NAME,
                 });  
-                // console.log(process.env.MYSQL_DB_HOST)
-                
             }
             return dbClient;
             
